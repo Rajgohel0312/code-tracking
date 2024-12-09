@@ -1,0 +1,5 @@
+.mainHero {
+  background-image: url("/net.svg");
+  height: 100vh;
+  background-position: center;
+}

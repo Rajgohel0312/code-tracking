@@ -1,0 +1,68 @@
+.about-sec {
+  min-height: 100vh;
+}
+
+.about-left {
+  width: 55%;
+  height: 100vh;
+}
+.about-left .about-left-title h1 {
+  font-size: 1.9rem;
+  font-weight: bold;
+  margin: 0px 0 20px;
+}
+.about-left-img {
+  width: 550px;
+  height: auto;
+}
+.about-left {
+  height: 100vh;
+  width: 50%;
+}
+.about-right {
+  height: 100vh;
+  width: 50%;
+}
+.about-top-Btn {
+  display: flex;
+  justify-content: flex-end;
+}
+.about-top-Btn h5 {
+  font-size: 1.2rem;
+  text-align: end;
+  color: #4d9092;
+  padding: 10px;
+  border-radius: 8px;
+  border: solid 2px #4d9092;
+}
+.about-row {
+  gap: 20px;
+}
+.about-card {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 0 10px;
+  background: white;
+  color: black;
+  border: solid black 2px;
+  border-radius: 8px;
+  transition: all 0.5s ease;
+  cursor: default;
+}
+.about-card:hover {
+  background: #4d9092;
+  color: white;
+}
+.about-card-icon i {
+  font-size: 2.5rem;
+}
+
+.about-card .about-card-title {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+.about-card .about-card-para {
+  font-size: 1rem;
+  font-weight: 300;
+}

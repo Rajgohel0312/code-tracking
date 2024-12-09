@@ -1,0 +1,16 @@
+.nav-logo {
+  width: 150px;
+}
+.nav-link.active {
+  background: #e2e2e2;
+  border-radius: 8px;
+  padding-right: 15px !important;
+  padding-left: 15px !important;
+}
+.navbar-nav {
+  gap: 25px;
+}
+.nav-link {
+  font-weight: bold;
+  color: black;
+}

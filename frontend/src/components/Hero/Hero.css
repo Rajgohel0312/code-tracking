@@ -1,0 +1,57 @@
+.hero-sec {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px 0;
+  text-align: center;
+}
+
+.hero-top-title {
+  background-color: white;
+  padding: 5px;
+  border-radius: 8px;
+  max-width: 90%; /* Limit width on smaller screens */
+}
+
+.hero-top-title h4 {
+  font-size: 1rem;
+  margin: 0;
+}
+
+.hero-main-title h1 {
+  font-weight: bold;
+  margin: 20px 0;
+  color: #64aaad;
+  font-size: 2rem; /* Base size */
+}
+
+.hero-para {
+  width: 80%;
+  margin: 0 auto 20px auto;
+  font-size: 1rem;
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+  .hero-main-title h1 {
+    font-size: 1.5rem; /* Smaller font for tablets */
+  }
+  .hero-para {
+    font-size: 0.9rem; /* Adjust paragraph size */
+    width: 90%; /* More flexible width */
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-main-title h1 {
+    font-size: 1.2rem; /* Further reduce for smaller screens */
+  }
+  .hero-para {
+    font-size: 0.8rem;
+    width: 100%; /* Full width for smaller screens */
+  }
+  .btn {
+    width: 100%; /* Button spans the full width */
+  }
+}
