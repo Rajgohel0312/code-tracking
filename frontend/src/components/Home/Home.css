@@ -3,3 +3,13 @@
   height: 100vh;
   background-position: center;
 }
+.language-sec {
+  margin: 40px 0;
+}
+.info-sec {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+}
