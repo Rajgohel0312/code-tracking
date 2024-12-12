@@ -5,9 +5,9 @@ const Language = () => {
   return (
     <div className="container">
       <div className="languageTitle">
-        <h1>
+        <h2 className="text-center ">
           Master In-Demand Skills: Internships in Top Programming Languages
-        </h1>
+        </h2>
       </div>
       <div className="languages my-5">
         <div className="row">

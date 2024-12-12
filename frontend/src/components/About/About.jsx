@@ -10,7 +10,7 @@ const About = () => {
             <div className="about-left-title text-center  text-lg-start">
               <h1>Build Your Future with Spectech: Websites & Internships</h1>
             </div>
-            <div className="about-left-desc text-md-center text-sm-center text-xs-center text-lg-start">
+            <div className="about-left-desc text-center text-lg-start">
               <p>
                 Gain hands-on web development experience through internships
                 while creating custom, responsive websites that drive growth and
@@ -18,7 +18,7 @@ const About = () => {
               </p>
             </div>
             <div className="about-left-img">
-              <img className="img-fluid" src="/model.png" alt="" />
+              <img className="img-fluid" src="/model_2.JPG" alt="" />
             </div>
           </div>
         </div>

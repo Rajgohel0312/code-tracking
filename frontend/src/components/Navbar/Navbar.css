@@ -2,13 +2,39 @@
   width: 150px;
 }
 .nav-link.active {
-  background: #e2e2e2;
+  background: #f5f4f4;
   border-radius: 8px;
   padding-right: 15px !important;
   padding-left: 15px !important;
 }
+.navbar {
+  width: 100%;
+  background-color: transparent;
+  transition: all 0.8s ease;
+}
+/* Glassmorphism effect */
+.navbar.glassmorphism {
+  margin: 0 auto;
+  padding: 2px 21px;
+  background: rgba(253, 253, 253, 0.17);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(3.9px);
+  -webkit-backdrop-filter: blur(3.9px);
+  width: 90%; /* Set width as 90% */
+  transition: all 0.8s ease; /* Ensure all properties are transitioning, including width */
+}
+/* To apply smooth transition for the width change */
+.navbar:not(.glassmorphism) {
+  width: 100%; /* Default full width when not scrolled */
+}
 .navbar-nav {
   gap: 25px;
+}
+@media (max-width: 968px) {
+  .navbar-nav {
+    margin-top: 20px;
+  }
 }
 .nav-link {
   font-weight: bold;

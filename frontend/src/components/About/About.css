@@ -61,7 +61,10 @@
 .about-card-icon {
   margin-bottom: 10px;
 }
-
+.about-left-img img {
+  border-radius: 8px;
+  box-shadow: #4d9092 -10px 10px 0px;
+}
 .about-card-icon i {
   font-size: 3rem;
   transition: all 0.5s ease;

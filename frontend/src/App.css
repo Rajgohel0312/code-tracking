@@ -6,6 +6,9 @@ body {
   background: #64aaad;
   border-color: #64aaad;
 }
+.text-primary {
+  color: #64aaad !important;
+}
 
 .btn-primary:focus,
 .btn-primary:hover {

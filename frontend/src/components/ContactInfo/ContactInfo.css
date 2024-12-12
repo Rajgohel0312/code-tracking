@@ -1,0 +1,58 @@
+.contactInfoTitle {
+  font-size: 1.8rem;
+  color: #64aaad;
+}
+.contactInfoPara {
+  font-size: 1.1rem;
+}
+.contactCard {
+  padding: 10px;
+  margin: 20px 0;
+  border-radius: 8px;
+  box-shadow: #64aaad6b 10px 10px 0px;
+  background: #fff;
+}
+.iconRow {
+  justify-items: center;
+  height: 100%;
+}
+.contactInfoIcon {
+  background-color: #64aaad;
+  width: 50px;
+  align-items: center;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  border-radius: 8px;
+  height: 50px;
+  box-shadow: #000 5px 3px 0px;
+}
+.iconRow i {
+  font-size: 1.8rem;
+}
+.contactInfoDetails {
+  margin: 20px 0;
+}
+.contactInfoDetailsTitle {
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+.contactInfoDetailsPara {
+  color: rgb(65, 63, 63);
+  margin: 10px 0;
+  gap: 10px;
+}
+.contactInfoMap {
+  width: 100%;
+  padding: 20px 0;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10px 0;
+}
+.contactInfoMap iframe {
+  border-radius: 20px;
+  height: 100%;
+  box-shadow: #64aaad 15px 10px 0px;
+}
