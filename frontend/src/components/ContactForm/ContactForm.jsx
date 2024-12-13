@@ -69,9 +69,10 @@ const ContactForm = () => {
     if (!validateForm()) return;
 
     setIsLoading(true);
+    
     try {
       const response = await axios.post(
-        "https://spectechitsolution.com/contacts",
+        "https://spectechitsolution.com/api/contacts",
         formData,
         {
           headers: {

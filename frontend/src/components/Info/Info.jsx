@@ -17,7 +17,7 @@ const Info = () => {
               impactful solutions that shape your future.
             </div>
             <div className="info-btn align-self-center align-self-lg-start my-3">
-              <a href="#" className="btn btn-primary">
+              <a href="#contact-form" className="btn btn-primary">
                 Contact us
               </a>
             </div>

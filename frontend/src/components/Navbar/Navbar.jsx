@@ -108,7 +108,7 @@ const Navbar = () => {
                   className={`nav-link ${
                     activeSection === "contact" ? "active" : ""
                   }`}
-                  href="#contact"
+                  href="#contact-form"
                 >
                   Contact Us
                 </a>

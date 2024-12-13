@@ -28,19 +28,19 @@ const Footer = () => {
               <li className="d-flex align-items-center mb-2">
                 <i className="fas fa-phone-alt me-3"></i>
                 <a
-                  href="tel:+916351939325"
+                  href="tel:+91768488427"
                   className="text-light text-decoration-none"
                 >
-                  +91 6351939325 (SPEC)
+                  +91 76848 88427 (SPEC)
                 </a>
               </li>
               <li className="d-flex align-items-center mb-2">
                 <i className="fas fa-phone-alt me-3"></i>
                 <a
-                  href="tel:+916351939325"
+                  href="tel:+7016436815"
                   className="text-light text-decoration-none"
                 >
-                  +91 6351939325 (Jeet Parmar)
+                  +91 70164 36815 (Jeet Parmar)
                 </a>
               </li>
               <li className="d-flex align-items-center mb-2">
@@ -84,7 +84,7 @@ const Footer = () => {
                 </a>
               </li>
               <li>
-                <a href="#contact" className="text-light text-decoration-none">
+                <a href="#contact-form" className="text-light text-decoration-none">
                   Contact Us
                 </a>
               </li>

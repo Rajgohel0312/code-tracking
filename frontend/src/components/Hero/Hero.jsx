@@ -22,7 +22,7 @@ const Hero = () => {
           </p>
         </div>
         <div className="d-flex justify-content-center mt-3">
-          <a href="" className="btn btn-primary btn-lg px-4 py-2">
+          <a href="#contact-form" className="btn btn-primary btn-lg px-4 py-2">
             Get a Discovery Call now
           </a>
         </div>

@@ -18,9 +18,9 @@ const ContactInfo = () => {
               icon={<i className="fa fa-phone" />}
               title="Contact Us"
               para={[
-                "+91 6351939325 (SPEC)",
-                "+91 6351939325 (Jeet Parmar)",
-                "+91 6351939325 (Raj Gohel)",
+                "+91 76848 88427 (SPEC)",
+                "+91 70164 36815 (Jeet Parmar)",
+                "+91 63519 39325 (Raj Gohel)",
               ]}
             />
             <ContactCard

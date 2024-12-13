@@ -31,7 +31,7 @@ const Home = () => {
       <div id="contact" className="contact-info">
         <ContactInfo />
       </div>
-      <div className="contact-form">
+      <div id="contact-form" className="contact-form">
         <ContactForm />
       </div>
       <div className="footer-sec">
