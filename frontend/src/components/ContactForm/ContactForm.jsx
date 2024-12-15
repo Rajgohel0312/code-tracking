@@ -72,7 +72,7 @@ const ContactForm = () => {
     
     try {
       const response = await axios.post(
-        "https://spectechitsolution.com/api/contacts",
+        "http://127.0.0.1:8000/contacts",
         formData,
         {
           headers: {
@@ -83,6 +83,7 @@ const ContactForm = () => {
 
       setStatusMessage(response.data.message);
       setFormData({ name: "", email: "", phone: "", subject: "", message: "" });
+      return true;
     } catch (err) {
       setError("Failed to send your message. Please try again.");
       console.error(err);

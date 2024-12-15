@@ -1,0 +1,64 @@
+/* Sidebar Styles */
+#sidebar {
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 250px;
+  color: black;
+  padding-top: 20px;
+  transition: all 0.3s ease; /* Smooth transition for sidebar */
+}
+
+#sidebar .nav-item {
+  padding: 10px 20px;
+}
+
+#sidebar .nav-link {
+  color: black;
+  font-size: 1rem;
+}
+
+#sidebar .nav-link:hover {
+  border-radius: 5px;
+}
+
+/* Sidebar Toggle Button (only visible on smaller screens) */
+.sidebar-toggle {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  margin: 10px 0;
+}
+
+/* Content Styles */
+#content {
+  margin-left: 250px;
+  padding: 20px;
+  transition: margin-left 0.3s ease; /* Smooth transition for content */
+}
+
+/* Mobile view: Sidebar hidden by default */
+@media (max-width: 991px) {
+  #sidebar {
+      position: fixed;
+      left: -250px; /* Sidebar is hidden by default */
+  }
+  
+  #content {
+      margin-left: 0; /* Full width content on mobile */
+  }
+  
+  .sidebar-toggle {
+      display: block; /* Show toggle button */
+  }
+  
+  #sidebar.active {
+      left: 0; /* When active, slide in the sidebar */
+  }
+  
+  #content.active {
+      margin-left: 250px; /* Shift content when sidebar is visible */
+  }
+}

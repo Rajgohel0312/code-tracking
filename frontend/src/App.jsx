@@ -1,7 +1,11 @@
 import { useState, useEffect } from "react";
 import "./App.css";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom"; // Import BrowserRouter, Routes, and Route
 import Home from "./components/Home/Home";
 import Loader from "./components/Loader/Loader"; // Import the loader component
+import Login from "./components/Login/Login";
+import Dashboard from "./components/Dashboard/Dashboard";
+import Logout from "./components/Logout/Logout";
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -28,16 +32,21 @@ function App() {
     return () => {
       document.body.classList.remove("loader");
     };
-  }, [loading]); // Re-run effect when loading state changes
+  }, [loading]);
 
   return (
-    <>
+    <Router>
       {loading ? (
-        <Loader /> // Show loader while loading
+        <Loader />
       ) : (
-        <Home /> // Show Home component when loading is complete
+        <Routes>
+          <Route path="/" element={<Home />} exact />
+          <Route path="/login" element={<Login /> }  exact />
+          <Route path="/dashboard/*" element={<Dashboard />} exact />
+          <Route path="/logout" element={<Logout />} exact />
+        </Routes>
       )}
-    </>
+    </Router>
   );
 }
 

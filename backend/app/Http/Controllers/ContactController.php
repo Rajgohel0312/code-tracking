@@ -15,11 +15,7 @@ class ContactController extends Controller
     public function index()
     {
         $user = Auth::user();
-        if ($user->role !== 'admin') {
-            return response()->json(['error' => 'Unauthorized'], 403);
-        }
 
-        // Retrieve all contacts
         $contacts = Contact::all();
 
         // Decrypt email and phone fields
@@ -61,36 +57,10 @@ class ContactController extends Controller
 
         return response()->json(['message' => 'Your message has been sent successfully.'], 201);
     }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(Contact $contact)
+    public function getTotalContactQueries()
     {
-        //
+        $count = Contact::count(); // Get the total count of contacts
+        return response()->json(['count' => $count]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Contact $contact)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Contact $contact)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Contact $contact)
-    {
-        //
-    }
 }

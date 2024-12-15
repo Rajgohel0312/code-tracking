@@ -1,19 +1,10 @@
 <?php
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ContactController;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
-});
-Route::get('/main', function () {
-     return response()->json([
-        'success' => true,
-        'message' => 'This is a test route',
-        'data' => [
-            'key1' => 'value1',
-            'key2' => 'value2',
-        ],
-    ]);
 });
 
 // Public contact form route (add rate limiting and optional auth)
@@ -25,7 +16,7 @@ RateLimiter::for('contacts', function () {
 });
 
 
-Route::get('/test-storage', function () {
-    $path = Storage::disk('public')->put('example.txt', 'This is a test file.');
-    return 'File saved at: ' . $path;
-});
+Route::post('/login', [AuthController::class, 'login']);
+Route::middleware('auth:sanctum')->post('/logout', [AuthController::class, 'logout']);
+Route::get('/contacts', [ContactController::class, 'index'])->middleware('auth:sanctum');
+Route::middleware('auth:sanctum')->get('/total-contact-queries', [ContactController::class, 'getTotalContactQueries']);
