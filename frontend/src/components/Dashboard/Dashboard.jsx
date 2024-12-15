@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Routes, Route, NavLink, useNavigate } from "react-router-dom"; // Import necessary routing components
+import axiosInstance from "../../axiosInstance"; // Import axiosInstance for API requests
 import "./Dashboard.css";
 import AdminContact from "./AdminContact";
 
@@ -27,20 +28,14 @@ const Dashboard = () => {
 
     const fetchContactCount = async () => {
       try {
-        const response = await fetch(
-          "http://127.0.0.1:8000/total-contact-queries",
-          {
-            method: "GET",
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: `Bearer ${token}`, // Use token for authorization
-            },
-          }
-        );
+        const response = await axiosInstance.get("total-contact-queries", {
+          headers: {
+            Authorization: `Bearer ${token}`, // Use token for authorization
+          },
+        });
 
-        if (response.ok) {
-          const data = await response.json();
-          setContactCount(data.count); // Set the fetched count into the state
+        if (response.status === 200) {
+          setContactCount(response.data.count); // Set the fetched count into the state
         } else {
           setError("Failed to fetch contact count");
         }
@@ -63,7 +58,9 @@ const Dashboard = () => {
       {/* Sidebar */}
       <div
         id="sidebar"
-        className={`text-dark p-3 position-fixed ${sidebarActive ? "active" : ""}`}
+        className={`text-dark p-3 position-fixed ${
+          sidebarActive ? "active" : ""
+        }`}
         style={{
           width: "250px",
           top: "0",
@@ -101,7 +98,7 @@ const Dashboard = () => {
         style={{ transition: "margin-left 0.3s ease" }}
       >
         {/* Navbar */}
-        <nav className="navbar navbar-expand-lg navbar-light bg-light">
+        <nav className="navbar navbar-expand-lg  rounded-1 navbar-light bg-light">
           <button
             className="btn btn-outline-secondary sidebar-toggle"
             id="sidebar-toggle"

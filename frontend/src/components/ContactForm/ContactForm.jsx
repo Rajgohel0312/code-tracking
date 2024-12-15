@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import axios from "axios";
 import "./ContactForm.css";
+import axiosInstance from "../../axiosInstance";
 
 const ContactForm = () => {
   const [formData, setFormData] = useState({
@@ -69,10 +69,10 @@ const ContactForm = () => {
     if (!validateForm()) return;
 
     setIsLoading(true);
-    
+
     try {
-      const response = await axios.post(
-        "http://127.0.0.1:8000/contacts",
+      const response = await axiosInstance.post(
+        "contacts", // Relative URL
         formData,
         {
           headers: {
@@ -80,7 +80,6 @@ const ContactForm = () => {
           },
         }
       );
-
       setStatusMessage(response.data.message);
       setFormData({ name: "", email: "", phone: "", subject: "", message: "" });
       return true;

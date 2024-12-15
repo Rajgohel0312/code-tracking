@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom"; // Import useNavigate for redirecting
+import axiosInstance from "../../axiosInstance";
 
 const Logout = () => {
   const [error, setError] = useState(""); // Define the error state
@@ -16,25 +17,27 @@ const Logout = () => {
           setError("No authentication token found.");
           return;
         }
-
-        // Send logout request with the token
-        const response = await axios.post(
-          "http://127.0.0.1:8000/logout",
+        const response = await axiosInstance.post(
+          "/logout",
           {},
           {
             headers: {
               Authorization: `Bearer ${token}`,
             },
+          },
+          {
             withCredentials: true,
           }
         );
-
         // If logout is successful, clear the token and update state
         localStorage.removeItem("token");
         setIsLoggedOut(true);
         navigate("/login"); // Redirect to login page
       } catch (err) {
-        console.error("Logout failed:", err.response ? err.response.data : err.message);
+        console.error(
+          "Logout failed:",
+          err.response ? err.response.data : err.message
+        );
         setError("Logout failed. Please try again.");
       }
     };
@@ -50,7 +53,8 @@ const Logout = () => {
         </div>
       ) : (
         <div>
-          {error && <p className="text-danger">{error}</p>} {/* Display error if present */}
+          {error && <p className="text-danger">{error}</p>}{" "}
+          {/* Display error if present */}
         </div>
       )}
     </div>

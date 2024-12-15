@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import axiosInstance from "../../axiosInstance";
 
 const AdminContact = () => {
   const [contacts, setContacts] = useState([]);
@@ -10,21 +11,16 @@ const AdminContact = () => {
   useEffect(() => {
     const fetchContacts = async () => {
       try {
-        const response = await fetch("http://127.0.0.1:8000/contacts", {
-          method: "GET",
+        const response = await axiosInstance.get("contacts", {
           headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${localStorage.getItem("token")}`, // Assuming token is stored in localStorage
+            Authorization: `Bearer ${localStorage.getItem("token")}`, 
           },
         });
 
-        if (response.ok) {
-          const data = await response.json();
-          setContacts(data); // Set the fetched contacts data into state
-        } else {
-          setError("Failed to fetch contacts"); // If response is not ok
-        }
+        // Directly set the data from the response
+        setContacts(response.data); 
       } catch (error) {
+        console.error(error); // Log the error for debugging
         setError("Error fetching contacts"); // If error occurs during fetch
       } finally {
         setLoading(false); // Set loading to false once data is fetched or error occurs
@@ -53,7 +49,10 @@ const AdminContact = () => {
   // Get the contacts for the current page
   const indexOfLastContact = currentPage * contactsPerPage;
   const indexOfFirstContact = indexOfLastContact - contactsPerPage;
-  const currentContacts = sortedContacts.slice(indexOfFirstContact, indexOfLastContact);
+  const currentContacts = sortedContacts.slice(
+    indexOfFirstContact,
+    indexOfLastContact
+  );
 
   // Pagination button handler
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
@@ -81,10 +80,10 @@ const AdminContact = () => {
       ) : (
         <>
           {/* Display the sorted and paginated contacts */}
-          <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+          <div className="row row-cols-1 row-cols-md-2 row-cols-lg-2 g-4">
             {currentContacts.map((contact) => (
               <div key={contact.id} className="col">
-                <div className="card shadow-sm">
+                <div className="card rounded-4 shadow-sm">
                   <div className="card-body">
                     <h5 className="card-title">{contact.name}</h5>
                     <p className="card-text">
@@ -96,6 +95,10 @@ const AdminContact = () => {
                     <p className="card-text">
                       <strong>Message:</strong> {contact.message}
                     </p>
+                    <p className="card-text">
+                      <strong>Type:</strong> {contact.subject}
+                    </p>
+                    
                     <p className="card-text">
                       <strong>Date:</strong> {formatDate(contact.created_at)}
                     </p>
@@ -124,7 +127,9 @@ const AdminContact = () => {
                   (_, index) => (
                     <li
                       key={index + 1}
-                      className={`page-item ${currentPage === index + 1 ? "active" : ""}`}
+                      className={`page-item ${
+                        currentPage === index + 1 ? "active" : ""
+                      }`}
                     >
                       <button
                         className="page-link"
@@ -139,7 +144,10 @@ const AdminContact = () => {
                   <button
                     className="page-link"
                     onClick={() => paginate(currentPage + 1)}
-                    disabled={currentPage === Math.ceil(contacts.length / contactsPerPage)}
+                    disabled={
+                      currentPage ===
+                      Math.ceil(contacts.length / contactsPerPage)
+                    }
                   >
                     Next
                   </button>

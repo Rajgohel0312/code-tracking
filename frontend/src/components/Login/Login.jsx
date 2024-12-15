@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom"; // Import useNavigate hook
+import axiosInstance from "../../axiosInstance";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -19,10 +20,7 @@ const Login = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      // Send login request
-      const response = await axios.post(
-        "http://127.0.0.1:8000/login",
-        {
+      const response = await axiosInstance.post('login',{
           email: email,
           password: password,
         },
