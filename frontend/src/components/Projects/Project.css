@@ -1,0 +1,38 @@
+.projects-main-title {
+  font-size: 2.1rem;
+  text-align: center;
+  font-weight: bold;
+  margin: 20px 0;
+}
+.projects-description {
+  text-align: center;
+  margin: 20px 0;
+}
+.projectCard {
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: black 0px 2px 0px;
+  min-height: 460px;
+  transition: all 0.5s ease;
+  margin: 10px 0;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.projectCard:hover {
+  transform: translate(-10px, -10px);
+  box-shadow: black 9px 9px 0px;
+}
+.projects-sec {
+  min-height: 125vh;
+}
+.project-title {
+  font-weight: bold;
+  font-size: 1.4rem;
+  margin: 10px 0;
+}
+.project-btn {
+  margin: 10px 0;
+}

@@ -1,0 +1,31 @@
+.info-left {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.info-main-container {
+  background-image: url("/logo_side.png");
+  background-repeat: no-repeat;
+  background-size: 145px;
+  background-position: 0% 100%;
+}
+.info-left {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.info-btn {
+  align-self: flex-start;
+}
+.info-right {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.info-img img {
+  border-radius: 8px;
+}

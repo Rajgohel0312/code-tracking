@@ -1,0 +1,39 @@
+.languageTitle h1 {
+  font-weight: bold;
+  font-size: 2.8rem !important;
+  text-align: center;
+}
+.language-container .language {
+  background: #fff;
+  margin: 10px;
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  border-radius: 8px;
+  box-shadow: #000 0px 3px 0px; /* Initial box-shadow */
+  cursor: default;
+  transition: all 0.5s ease; /* Transition for everything */
+}
+
+.language-container {
+  transition: all 0.5s ease;
+}
+
+.language-container:hover {
+  transform: translateY(-5px);
+}
+
+.language-container:hover .language {
+  /* Apply new box-shadow on hover */
+  box-shadow: #00000028 0px 10px 10px;
+  transition: box-shadow 0.5s ease; /* Specifically transition only the box-shadow */
+}
+.language-icon i {
+  font-size: 1.8rem;
+  color: #64aaad;
+}
+.language-title {
+  font-weight: bold;
+}
