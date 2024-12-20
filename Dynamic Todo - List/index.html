@@ -3,7 +3,176 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>To-Do List</title>
+    <link
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+      }
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+      .completed {
+        text-decoration: line-through;
+        color: grey;
+      }
+      .task-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .task-item .delete-btn {
+        color: red;
+        cursor: pointer;
+      }
+      .task-item .delete-btn:hover {
+        text-decoration: underline;
+      }
+    </style>
   </head>
-  <body></body>
+  <body>
+    <div class="container mt-5">
+      <h2 class="text-center">To-Do List</h2>
+      <div class="row">
+        <div class="col-md-6 offset-md-3">
+          <div class="form-group">
+            <input
+              type="text"
+              class="form-control"
+              id="taskInput"
+              placeholder="Enter a task"
+            />
+          </div>
+          <button class="btn btn-primary btn-block" id="addTaskBtn">
+            Add Task
+          </button>
+
+          <ul class="list-group mt-3" id="taskList"></ul>
+
+          <button class="btn btn-danger btn-block mt-3" id="clearAllBtn">
+            Clear All Tasks
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        loadTasks();
+      });
+
+      const taskInput = document.getElementById("taskInput");
+      const addTaskBtn = document.getElementById("addTaskBtn");
+      const taskList = document.getElementById("taskList");
+      const clearAllBtn = document.getElementById("clearAllBtn");
+
+      // Add task to the list
+      addTaskBtn.addEventListener("click", function () {
+        const taskText = taskInput.value.trim();
+        if (taskText !== "") {
+          const task = { text: taskText, completed: false };
+          addTaskToList(task);
+          saveTaskToLocalStorage(task);
+          taskInput.value = ""; // Clear the input field
+        }
+      });
+
+      // Toggle task completion status
+      function toggleTaskCompletion(taskItem, task) {
+        task.completed = !task.completed;
+        taskItem.classList.toggle("completed", task.completed);
+        saveTasksToLocalStorage(); // Fix: Use the correct function to save tasks
+      }
+
+      // Delete task from list
+      function deleteTask(taskItem, task) {
+        taskList.removeChild(taskItem);
+        removeTaskFromLocalStorage(task);
+      }
+
+      // Add task to the DOM
+      function addTaskToList(task) {
+        const taskItem = document.createElement("li");
+        taskItem.classList.add("list-group-item", "task-item");
+        if (task.completed) taskItem.classList.add("completed");
+
+        taskItem.innerHTML = `
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" ${
+              task.completed ? "checked" : ""
+            }>
+            <label class="form-check-label">
+                ${task.text}
+            </label>
+        </div>
+        <span class="delete-btn">&times;</span>
+    `;
+
+        taskItem
+          .querySelector(".form-check-input")
+          .addEventListener("click", () =>
+            toggleTaskCompletion(taskItem, task)
+          );
+        taskItem
+          .querySelector(".delete-btn")
+          .addEventListener("click", () => deleteTask(taskItem, task));
+
+        taskList.appendChild(taskItem);
+      }
+
+      // Save task to local storage
+      function saveTaskToLocalStorage(task) {
+        const tasks = getTasksFromLocalStorage();
+        tasks.push(task);
+        localStorage.setItem("tasks", JSON.stringify(tasks));
+      }
+
+      // Load tasks from local storage
+      function loadTasks() {
+        const tasks = getTasksFromLocalStorage();
+        tasks.forEach((task) => addTaskToList(task));
+      }
+
+      // Get tasks from local storage
+      function getTasksFromLocalStorage() {
+        return JSON.parse(localStorage.getItem("tasks")) || [];
+      }
+
+      // Remove task from local storage
+      function removeTaskFromLocalStorage(task) {
+        const tasks = getTasksFromLocalStorage();
+        const filteredTasks = tasks.filter((t) => t.text !== task.text);
+        localStorage.setItem("tasks", JSON.stringify(filteredTasks));
+      }
+
+      // Save all tasks to local storage (updated function for the toggle)
+      function saveTasksToLocalStorage() {
+        const tasks = [];
+        const taskItems = document.querySelectorAll(".task-item");
+        taskItems.forEach((item) => {
+          const taskText = item.querySelector("label").textContent;
+          const completed = item.classList.contains("completed");
+          tasks.push({ text: taskText, completed: completed });
+        });
+        localStorage.setItem("tasks", JSON.stringify(tasks));
+      }
+
+      // Clear all tasks
+      clearAllBtn.addEventListener("click", function () {
+        localStorage.removeItem("tasks");
+        taskList.innerHTML = "";
+      });
+    </script>
+  </body>
 </html>
