@@ -9,10 +9,19 @@ import Info from "../Info/Info";
 import ContactInfo from "../ContactInfo/ContactInfo";
 import ContactForm from "../ContactForm/ContactForm";
 import Footer from "../Footer/Footer";
+
 const Home = () => {
+  const sections = [
+    { id: "home", name: "Home", href: "#home" },
+    { id: "about", name: "About Us", href: "#about" },
+    { id: "projects", name: "Projects", href: "#projects" },
+    { id: "blogs", name: "Blogs", href: "/blogs" },
+    { id: "contact", name: "Contact Us", href: "#contact-form" },
+  ];
+
   return (
     <div className="mainHero">
-      <Navbar />
+      <Navbar sections={sections} />
       <div id="home" className="hero-sec">
         <Hero />
       </div>
@@ -25,7 +34,7 @@ const Home = () => {
       <div id="projects" className="projects-sec">
         <Projects />
       </div>
-      <div id="info" className="info-sec ">
+      <div id="info" className="info-sec">
         <Info />
       </div>
       <div id="contact" className="contact-info">
@@ -34,9 +43,7 @@ const Home = () => {
       <div id="contact-form" className="contact-form">
         <ContactForm />
       </div>
-      <div className="footer-sec">
-        <Footer />
-      </div>
+      <Footer />
     </div>
   );
 };

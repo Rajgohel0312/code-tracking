@@ -1,50 +1,31 @@
 import React, { useState, useEffect } from "react";
-import "./Navbar.css"; // Assuming you have a separate CSS file for custom styles
+import "./Navbar.css";
 
-const Navbar = () => {
-  const [activeSection, setActiveSection] = useState("home"); // Default to home section
+const Navbar = ({ sections }) => {
+  const [activeSection, setActiveSection] = useState(sections[0]?.id || "");
   const [isScrolled, setIsScrolled] = useState(false);
 
-  // Handle scroll event
   const handleScroll = () => {
-    const sections = [
-      "home",
-      "about",
-      "language",
-      "projects",
-      "info",
-      "contact",
-    ];
     let currentSection = "";
 
-    // Find the section that is currently in the viewport
-    for (let section of sections) {
-      const element = document.getElementById(section);
-      const rect = element.getBoundingClientRect();
-      if (rect.top <= 0 && rect.bottom >= 0) {
-        currentSection = section;
-        break;
+    sections.forEach((section) => {
+      const element = document.getElementById(section.id);
+      if (element) {
+        const rect = element.getBoundingClientRect();
+        if (rect.top <= 0 && rect.bottom >= 0) {
+          currentSection = section.id;
+        }
       }
-    }
+    });
 
-    // Update the active section in the navbar
     setActiveSection(currentSection);
-
-    // Set isScrolled to true if the user has scrolled down
-    if (window.scrollY > 0) {
-      setIsScrolled(true);
-    } else {
-      setIsScrolled(false);
-    }
+    setIsScrolled(window.scrollY > 0);
   };
 
-  // Add event listener when component mounts
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [sections]);
 
   return (
     <div className="container mt-2">
@@ -70,49 +51,18 @@ const Navbar = () => {
           </button>
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav ms-auto row-gap-3 mb-2 mb-lg-0">
-              <li className="nav-item">
-                <a
-                  className={`nav-link ${
-                    activeSection === "home" ? "active" : ""
-                  }`}
-                  aria-current="page"
-                  href="#home"
-                >
-                  Home
-                </a>
-              </li>
-              <li className="nav-item">
-                <a
-                  className={`nav-link ${
-                    activeSection === "about" ? "active" : ""
-                  }`}
-                  href="#about"
-                >
-                  About Us
-                </a>
-              </li>
-
-              <li className="nav-item">
-                <a
-                  className={`nav-link ${
-                    activeSection === "projects" ? "active" : ""
-                  }`}
-                  href="#projects"
-                >
-                  Projects
-                </a>
-              </li>
-
-              <li className="nav-item">
-                <a
-                  className={`nav-link ${
-                    activeSection === "contact" ? "active" : ""
-                  }`}
-                  href="#contact-form"
-                >
-                  Contact Us
-                </a>
-              </li>
+              {sections.map((section) => (
+                <li className="nav-item" key={section.id}>
+                  <a
+                    className={`nav-link ${
+                      activeSection === section.id ? "active" : ""
+                    }`}
+                    href={section.href}
+                  >
+                    {section.name}
+                  </a>
+                </li>
+              ))}
             </ul>
           </div>
         </div>

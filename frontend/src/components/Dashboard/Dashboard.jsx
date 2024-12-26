@@ -3,6 +3,8 @@ import { Routes, Route, NavLink, useNavigate } from "react-router-dom"; // Impor
 import axiosInstance from "../../axiosInstance"; // Import axiosInstance for API requests
 import "./Dashboard.css";
 import AdminContact from "./AdminContact";
+import AdminBlogs from "./AdminBlogs";
+import BlogCreation from "./CreateBlog";
 
 const Dashboard = () => {
   const [sidebarActive, setSidebarActive] = useState(false);
@@ -88,6 +90,11 @@ const Dashboard = () => {
               <i className="fa-solid fa-user"></i> Contact
             </NavLink>
           </li>
+          <li className="nav-item">
+            <NavLink className="nav-link" to="/dashboard/blogs">
+              <i className="fa-solid fa-user"></i> Blogs
+            </NavLink>
+          </li>
         </ul>
       </div>
 
@@ -162,6 +169,30 @@ const Dashboard = () => {
             element={
               <div className="container mt-4">
                 <AdminContact />
+              </div>
+            }
+          />
+          <Route
+            path="blogs"
+            element={
+              <div className="container mt-4">
+                <AdminBlogs />
+              </div>
+            }
+          />
+          <Route
+            path="blogs/createBlog"
+            element={
+              <div className="container mt-4">
+                <BlogCreation />
+              </div>
+            }
+          />
+          <Route
+            path="blogs/update/:id"
+            element={
+              <div className="container mt-4">
+                <BlogCreation isUpdate={true} />
               </div>
             }
           />

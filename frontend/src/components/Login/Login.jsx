@@ -1,47 +1,59 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
-import { useNavigate } from "react-router-dom"; // Import useNavigate hook
 import axiosInstance from "../../axiosInstance";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-  const navigate = useNavigate(); // Initialize useNavigate
-
-  // Check for token on component mount
+  const navigate = useNavigate();
   useEffect(() => {
     const token = localStorage.getItem("token");
-    if (token) {
-      navigate("/dashboard"); // Redirect to Dashboard if token exists
+    const expiry = localStorage.getItem("tokenExpiry");
+
+    if (token && expiry) {
+      const expirationDate = new Date(expiry);
+      console.log("Token Expiry Date in Local Time:", expirationDate);
+
+      // Check if token has expired
+      const isExpired = expirationDate <= new Date();
+      if (isExpired) {
+        localStorage.removeItem("token");
+        localStorage.removeItem("tokenExpiry");
+        window.location.href = "/login"; // Redirect to login
+      }
     }
-  }, [navigate]); // Add navigate as a dependency
+  }, []);
 
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const response = await axiosInstance.post('login',{
-          email: email,
-          password: password,
+      const response = await axiosInstance.post(
+        "login",
+        {
+          email,
+          password,
         },
         {
           headers: {
             Accept: "application/json",
             "Content-Type": "application/json",
           },
-          withCredentials: true, // Include credentials if necessary
+          withCredentials: true,
         }
       );
 
-      // Handle the response if successful
-      if (response.data && response.data.token) {
-        localStorage.setItem("token", response.data.token); // Store token in local storage
-        navigate("/dashboard"); // Redirect to Dashboard
+      if (response.data && response.data.token && response.data.expires_at) {
+        // Store token and expiration in local storage
+        localStorage.setItem("token", response.data.token);
+        localStorage.setItem("tokenExpiry", response.data.expires_at);
+
+        navigate("/dashboard");
       } else {
-        setError("No token received from server.");
+        setError("No token or expiration info received from server.");
       }
     } catch (err) {
-      setError("Invalid credentials"); // Set error message for user
+      setError("Invalid credentials");
     }
   };
 

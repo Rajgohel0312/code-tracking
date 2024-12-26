@@ -16,6 +16,8 @@ return Application::configure(basePath: dirname(__DIR__))
             'contacts',
             'login',
             'logout',
+            'dashboard/*',
+            'blogs/*'
         ]);
         $middleware->append(\Illuminate\Http\Middleware\HandleCors::class);
     })
